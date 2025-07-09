@@ -583,8 +583,7 @@ nav.scrolled {
   font-size: 0.95rem;
 }
 
-/* Fullscreen certificate when click */
-/* Base modal container - hidden by default */
+/* Fullscreen certificate when click Modal*/
 .image-modal {
   position: fixed;
   z-index: 9999;
@@ -840,7 +839,6 @@ footer {
 }
 
 /*Responsive Design*/
-
 @media (max-width: 768px) {
   /* Navigation */
   .mobile-menu-btn {

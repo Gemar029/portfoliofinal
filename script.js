@@ -73,9 +73,9 @@
 
 
 
-        // Add animation on scroll
+        // Add animation on scroll on pages content
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.skill-card, .project-card');
+            const elements = document.querySelectorAll('.skill-card');
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
@@ -87,7 +87,7 @@
             });
         }
 
-        // Set initial state for animations
+        
         document.querySelectorAll('.skill-card, .project-card').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
@@ -103,7 +103,6 @@ const modalImg = document.getElementById("modalImage");
 const closeBtn = document.querySelector(".image-modal .close");
 const certImages = document.querySelectorAll(".cert-image img");
 
-// Open modal
 certImages.forEach(img => {
   img.addEventListener("click", () => {
     modal.classList.remove("hidden");
@@ -113,13 +112,13 @@ certImages.forEach(img => {
   });
 });
 
-// Close modal when clicking close button
+
 closeBtn.addEventListener("click", () => {
   modal.classList.remove("show");
   modal.classList.add("hidden");
 });
 
-// Close modal when clicking outside the image
+
 modal.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.classList.remove("show");
