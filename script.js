@@ -70,9 +70,6 @@
           });
         });
 
-
-
-
         // Add animation on scroll on pages content
         function animateOnScroll() {
             const elements = document.querySelectorAll('.skill-card');
@@ -97,35 +94,48 @@
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
 
-// Certificate modal fullscreen on click
-const modal = document.getElementById("imageModal");
-const modalImg = document.getElementById("modalImage");
-const closeBtn = document.querySelector(".image-modal .close");
-const certImages = document.querySelectorAll(".cert-image img");
+        // Certificate modal fullscreen on click
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeBtn = document.querySelector(".image-modal .close");
+        const certImages = document.querySelectorAll(".cert-image img");
 
-certImages.forEach(img => {
-  img.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-    modal.classList.add("show");
-    modalImg.src = img.src;
-    modalImg.alt = img.alt;
-  });
-});
-
-
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
-  modal.classList.add("hidden");
-});
+        certImages.forEach(img => {
+          img.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+            modal.classList.add("show");
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+          });
+        });
 
 
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("show");
-    modal.classList.add("hidden");
-  }
-});
+        closeBtn.addEventListener("click", () => {
+          modal.classList.remove("show");
+          modal.classList.add("hidden");
+        });
 
 
-        
-        
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("show");
+            modal.classList.add("hidden");
+          }
+        });
+
+        // Typewriter effect
+        const text = " I'm Gemar Alegre";
+        let index = 0;
+        const speed = 150;
+
+        const typeOnce = () => {
+          const el = document.getElementById("typewriter");
+
+          if (index <= text.length) {
+            el.textContent = text.substring(0, index);
+            index++;
+            setTimeout(typeOnce, speed);
+          }
+        };
+
+        typeOnce(); // type only once on load
