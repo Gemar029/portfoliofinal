@@ -22,6 +22,32 @@
             }
         });
 
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+          const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+          const navLinks = document.querySelector('.nav-links');
+
+          if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+              navLinks.classList.toggle('active');
+
+              // Hamburger icon to X
+              if(navLinks.classList.contains('active')){
+                mobileMenuBtn.innerHTML = '&times;';
+              } else {
+                mobileMenuBtn.innerHTML = '&#9776;';
+              }
+            });
+            
+            //Close mobile menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+              link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+              });
+            });
+          }
+        });
+
         // Contact form handling with EmailJS
         document.addEventListener('DOMContentLoaded', () => {
           emailjs.init('l60NZFNgB-8vDPHKn'); // Replace with your actual public key
@@ -95,47 +121,52 @@
         window.addEventListener('load', animateOnScroll);
 
         // Certificate modal fullscreen on click
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        const closeBtn = document.querySelector(".image-modal .close");
-        const certImages = document.querySelectorAll(".cert-image img");
+        document.addEventListener('DOMContentLoaded', () => {
+          const modal = document.getElementById("imageModal");
+          const modalImg = document.getElementById("modalImage");
+          const closeBtn = document.querySelector(".image-modal .close");
+          const certImages = document.querySelectorAll(".cert-image img");
 
-        certImages.forEach(img => {
-          img.addEventListener("click", () => {
-            modal.classList.remove("hidden");
-            modal.classList.add("show");
-            modalImg.src = img.src;
-            modalImg.alt = img.alt;
+          if (!modal || !modalImg || !closeBtn || certImages.length === 0) return;
+
+          certImages.forEach(img => {
+            img.addEventListener("click", () => {
+              modal.classList.remove("hidden");
+              modal.classList.add("show");
+              modalImg.src = img.src;
+              modalImg.alt = img.alt || "Certificate";
+            });
+          });
+
+          closeBtn.addEventListener("click", () => {
+            modal.classList.remove("show");
+            modal.classList.add("hidden");
+          });
+
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+              modal.classList.remove("show");
+              modal.classList.add("hidden");
+            }
           });
         });
 
-
-        closeBtn.addEventListener("click", () => {
-          modal.classList.remove("show");
-          modal.classList.add("hidden");
-        });
-
-
-        modal.addEventListener("click", (e) => {
-          if (e.target === modal) {
-            modal.classList.remove("show");
-            modal.classList.add("hidden");
-          }
-        });
-
         // Typewriter effect
-        const text = " I'm Gemar Alegre";
-        let index = 0;
-        const speed = 150;
+        document.addEventListener('DOMContentLoaded', () => {
+          const text = " I'm Gemar Alegre";
+          const speed = 150;
+          let index = 0;
 
-        const typeOnce = () => {
           const el = document.getElementById("typewriter");
+          if (!el) return;
 
-          if (index <= text.length) {
-            el.textContent = text.substring(0, index);
-            index++;
-            setTimeout(typeOnce, speed);
-          }
-        };
+          const typeOnce = () => {
+            if (index <= text.length) {
+              el.textContent = text.substring(0, index);
+              index++;
+              setTimeout(typeOnce, speed);
+            }
+          };
 
-        typeOnce(); // type only once on load
+          typeOnce();
+        });
