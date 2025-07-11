@@ -560,8 +560,14 @@ nav.scrolled {
   text-align: center;
 }
 
-.cert-body h3 {
+.cert-body h3 a {
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+}
+
+.cert-body h2 {
+  font-size: 0.8rem;
   margin-bottom: 0.5rem;
   color: #2d3748;
 }
@@ -569,6 +575,7 @@ nav.scrolled {
 .cert-body p {
   color: #4a5568;
   font-size: 0.95rem;
+  font-weight: 600;
 }
 
 /* Fullscreen certificate when click Modal*/
