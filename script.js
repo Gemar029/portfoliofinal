@@ -38,12 +38,21 @@
                 mobileMenuBtn.innerHTML = '&#9776;';
               }
             });
-            
+
             //Close mobile menu when a link is clicked
             navLinks.querySelectorAll('a').forEach(link => {
               link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '&#9776;';
               });
+            });
+
+            // Reset mobile menu state on window resize
+            window.addEventListener('resize', () =>{
+              if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '&#9776;';
+              }
             });
           }
         });
