@@ -234,6 +234,110 @@ function initTypewriterEffect() {
     typeOnce();
 }
 
+// Theme toggle
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const storageKey = 'theme';
+
+    if (!themeToggle) {
+        console.warn('Theme toggle element not found');
+        return;
+    }
+
+    function loadTheme() {
+        const savedTheme = localStorage.getItem(storageKey);
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Use saved theme, or fall back to system preference, or default to light
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+        if (theme === 'dark') {
+            body.classList.add('dark');
+        }
+    }
+
+    function toggleTheme() {
+        const isDark = body.classList.contains('dark');
+        const newTheme = isDark ? 'light' : 'dark';
+
+        setTheme(newTheme);
+        saveTheme(newTheme);
+        addHapticFeedback();
+    }
+
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.add('dark');
+        } else {
+            body.classList.remove('dark');
+        }
+
+        updateAriaAttributes();
+        dispatchThemeChangeEvent(theme);
+    }
+
+    function saveTheme(theme) {
+        localStorage.setItem(storageKey, theme);
+    }
+
+    function updateAriaAttributes() {
+        const isDark = body.classList.contains('dark');
+        themeToggle.setAttribute('aria-checked', isDark);
+        themeToggle.setAttribute(
+            'aria-label',
+            isDark ? 'Switch to light mode' : 'Switch to dark mode'
+        );
+    }
+
+    function addHapticFeedback() {
+        if ('vibrate' in navigator) {
+            navigator.vibrate(50);
+        }
+    }
+
+    function dispatchThemeChangeEvent(theme) {
+        const event = new CustomEvent('themeChanged', {
+            detail: { theme: theme },
+        });
+        document.dispatchEvent(event);
+    }
+
+    function handleKeydown(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    }
+
+    function handleSystemThemeChange(e) {
+        // Only auto-switch if user hasn't manually set a preference
+        if (!localStorage.getItem(storageKey)) {
+            if (e.matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+    }
+
+    // Load saved theme
+    loadTheme();
+
+    // Set up event listeners
+    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('keydown', handleKeydown);
+
+    // Listen for system theme changes
+    window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', handleSystemThemeChange);
+
+    // Initialize accessibility attributes
+    updateAriaAttributes();
+}
+
+
 // Initializing all functions when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
@@ -243,4 +347,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initCertificateModal();
     initTypewriterEffect();
     initContactForm();
+    initThemeToggle();
 });
