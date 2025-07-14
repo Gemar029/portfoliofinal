@@ -228,7 +228,7 @@ nav.scrolled {
     background-color:#6b7280;
     padding: 2px 4px;
     border-radius: 4px;
-    animation: popIn 0.6s ease-out forwards, pulse 2s infinite;
+    animation: popIn 0.6s ease-out forwards, pulse 2.5s infinite;
     color: white;
     transition: opacity 0.3s ease-in-out
 }
@@ -322,7 +322,6 @@ nav.scrolled {
     display: inline-block;
     transition: transform 0.3s ease;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
-
     animation: pulse-glow-light 2.5s ease-in-out infinite;
 }
 
@@ -1197,8 +1196,6 @@ body.dark {
   content: url("images/Gemar1\ trial.png");
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
   transition: filter 0.3s ease;
-  
-  /* Apply pulse animation */
   animation: pulse-glow 2.5s ease-in-out infinite;
 }
 
