@@ -1193,7 +1193,7 @@ body.dark {
 }
 
 .dark .hero-image img {
-  content: url("images/Gemar1\ trial.png");
+  content: url("images/GemarDark.png");
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
   transition: filter 0.3s ease;
   animation: pulse-glow 2.5s ease-in-out infinite;
