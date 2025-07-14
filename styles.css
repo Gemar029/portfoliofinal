@@ -5,14 +5,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #2d3748;
-    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-    overflow-x: hidden;
-}
-
 /* Navigation */
 nav {
     position: fixed;
@@ -315,7 +307,8 @@ nav.scrolled {
     width: 100%;
     height: auto;
     display: inline-block;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    filter: drop-shadow(30px 2px 18px rgba(0, 0, 0, 0.8));
 }
 
 /* On load hero page animation */
