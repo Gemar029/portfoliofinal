@@ -1077,6 +1077,10 @@ body.dark {
 }
 
 /* Navbar */
+.dark .section-title{
+  color: #d1d5db;
+}
+
 .dark nav {
   background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -1161,18 +1165,60 @@ body.dark {
     border-color: transparent;
 }
 
+/* Glow animation on img */
+/* Keyframes for pulse animation - glow only */
+@keyframes pulse-glow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(52, 152, 219, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+  }
+}
+
+/* Alternative pulse animation with wider glow */
+@keyframes pulse-wide {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(52, 152, 219, 0.8)) 
+            drop-shadow(0 0 60px rgba(52, 152, 219, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+  }
+}
+
 .dark .hero-image img {
+  content: url("images/Gemar1\ trial.png");
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
   transition: filter 0.3s ease;
+  
+  /* Apply pulse animation */
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
 .dark .hero-image img:hover {
-  filter: drop-shadow(0 0 20px rgba(52, 152, 219, 0.4));
+  animation: none;
+  filter: drop-shadow(0 0 18px rgba(52, 152, 219, 0.9));
 }
 
-.dark .section-title{
-  color: #d1d5db;
+.dark .hero-image img.wide-pulse {
+  animation: pulse-wide 3s ease-in-out infinite;
 }
+
+.dark .hero-image img.fast-pulse {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.dark .hero-image img.slow-pulse {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
 /* About Sections */
 .dark .about {
   background: linear-gradient(135deg, #131b25 0%, #060a0f 100%);
