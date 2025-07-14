@@ -296,6 +296,19 @@ nav.scrolled {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Light mode pulse animations */
+@keyframes pulse-glow-light {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(0, 0, 0, 1));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+  }
+}
+
 .hero-image {
     position: relative;
     animation: fadeInRight 1s ease-in-out;
@@ -307,8 +320,15 @@ nav.scrolled {
     width: 100%;
     height: auto;
     display: inline-block;
-    transition: transform 0.5s ease, box-shadow 0.3s ease;
-    filter: drop-shadow(30px 2px 18px rgba(0, 0, 0, 0.8));
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+
+    animation: pulse-glow-light 2.5s ease-in-out infinite;
+}
+
+.hero-image img:hover {
+  animation: none;
+  filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.9));
 }
 
 /* On load hero page animation */
@@ -1124,8 +1144,8 @@ body.dark {
     color: #1a202c;
     border: 2px solid #ffffff;
     box-shadow:
-        0 4px 0 #a0aec0,         /* base shadow below */
-        0 10px 20px rgba(255, 255, 255, 0.1); /* outer soft glow */
+        0 4px 0 #a0aec0,
+        0 10px 20px rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     position: relative;
 }
@@ -1159,6 +1179,7 @@ body.dark {
 }
 
 /* Glow animation on img */
+
 /* Keyframes for pulse animation - glow only */
 @keyframes pulse-glow {
   0% {
@@ -1172,44 +1193,18 @@ body.dark {
   }
 }
 
-/* Alternative pulse animation with wider glow */
-@keyframes pulse-wide {
-  0% {
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
-  }
-  50% {
-    filter: drop-shadow(0 0 35px rgba(52, 152, 219, 0.8)) 
-            drop-shadow(0 0 60px rgba(52, 152, 219, 0.3));
-  }
-  100% {
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
-  }
-}
-
 .dark .hero-image img {
   content: url("images/Gemar1\ trial.png");
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
   transition: filter 0.3s ease;
   
   /* Apply pulse animation */
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 2.5s ease-in-out infinite;
 }
 
 .dark .hero-image img:hover {
   animation: none;
   filter: drop-shadow(0 0 18px rgba(52, 152, 219, 0.9));
-}
-
-.dark .hero-image img.wide-pulse {
-  animation: pulse-wide 3s ease-in-out infinite;
-}
-
-.dark .hero-image img.fast-pulse {
-  animation: pulse-glow 1.5s ease-in-out infinite;
-}
-
-.dark .hero-image img.slow-pulse {
-  animation: pulse-glow 4s ease-in-out infinite;
 }
 
 /* About Sections */
