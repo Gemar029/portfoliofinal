@@ -283,8 +283,8 @@ function typewriterEffect(elementId, texts, options = {}) {
 function initTypewriterEffect() {
     typewriterEffect('typewriter', [
         "Hi, I'm Gemar Alegre",
+        "こんにちは、ゲマー・アレグレです",
         "Kamusta, Ako si Gemar Alegre",
-        "Konnichiwa, Jemaru Aregure",
         "Welcome to my Portfolio"
     ], {
         typeSpeed: 150,

@@ -219,6 +219,10 @@ nav.scrolled {
 }
 
 /* Typewriter effect on Name */
+#typewriter{
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica 
+}
+
 #typewriter::after {
   content: '|';
   animation: blink 1s step-start infinite;
