@@ -215,23 +215,73 @@ function initCertificateModal() {
 }
 
 // Typewriter effect on hero Name
-function initTypewriterEffect() {
-    const text = " I'm Gemar Alegre";
-    const speed = 150;
-    let index = 0;
-
-    const el = document.getElementById("typewriter");
-    if (!el) return;
-
-    function typeOnce() {
-        if (index <= text.length) {
-            el.textContent = text.substring(0, index);
-            index++;
-            setTimeout(typeOnce, speed);
+function typewriterEffect(elementId, texts, options = {}) {
+    const element = document.getElementById(elementId);
+    if (!element) {
+        console.error(`Element with id "${elementId}" not found`);
+        return;
+    }
+    
+    // Default options
+    const settings = {
+        typeSpeed: 100,
+        deleteSpeed: 50,
+        pauseTime: 2000,
+        ...options
+    };
+    
+    let currentTextIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+        const currentText = texts[currentTextIndex];
+        
+        if (!isDeleting) {
+            // Typing
+            element.textContent = currentText.substring(0, currentCharIndex + 1);
+            currentCharIndex++;
+            
+            if (currentCharIndex === currentText.length) {
+                // Finished typing, pause then start deleting
+                setTimeout(() => {
+                    isDeleting = true;
+                    type();
+                }, settings.pauseTime);
+            } else {
+                setTimeout(type, settings.typeSpeed);
+            }
+        } else {
+            // Deleting
+            element.textContent = currentText.substring(0, currentCharIndex - 1);
+            currentCharIndex--;
+            
+            if (currentCharIndex === 0) {
+                // Finished deleting, move to next text
+                isDeleting = false;
+                currentTextIndex = (currentTextIndex + 1) % texts.length;
+                setTimeout(type, settings.typeSpeed);
+            } else {
+                setTimeout(type, settings.deleteSpeed);
+            }
         }
     }
+    
+    // Start the effect
+    type();
+}
 
-    typeOnce();
+function initTypewriterEffect() {
+    typewriterEffect('typewriter', [
+        "Hi, I'm Gemar Alegre",
+        "Kamusta, Ako si Gemar Alegre",
+        "Konnichiwa, Jemaru Aregure",
+        "Welcome to my Portfolio"
+    ], {
+        typeSpeed: 150,
+        deleteSpeed: 75,
+        pauseTime: 2000
+    });
 }
 
 // Theme toggle
@@ -249,7 +299,7 @@ function initThemeToggle() {
         const savedTheme = localStorage.getItem(storageKey);
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        // Use saved theme, or fall back to system preference, or default to light
+        
         const theme = savedTheme || (prefersDark ? 'dark' : 'light');
 
         if (theme === 'dark') {
