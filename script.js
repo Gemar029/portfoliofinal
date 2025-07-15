@@ -227,12 +227,14 @@ function typewriterEffect(elementId, texts, options = {}) {
         typeSpeed: 100,
         deleteSpeed: 50,
         pauseTime: 2000,
+        initialPause: 2000,
         ...options
     };
     
     let currentTextIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
+    let isInitialized = false;
     
     function type() {
         const currentText = texts[currentTextIndex];
@@ -266,9 +268,16 @@ function typewriterEffect(elementId, texts, options = {}) {
             }
         }
     }
+
+    // Initialize with first text fully loaded
+    element.textContent = texts[0];
+    currentCharIndex = texts[0].length;
     
-    // Start the effect
-    type();
+    // Start the effect after initial pause by deleting the first text
+    setTimeout(() => {
+        isDeleting = true;
+        type();
+    }, settings.initialPause);
 }
 
 function initTypewriterEffect() {
@@ -280,7 +289,8 @@ function initTypewriterEffect() {
     ], {
         typeSpeed: 150,
         deleteSpeed: 75,
-        pauseTime: 2000
+        pauseTime: 2000,
+        initialPause: 5000
     });
 }
 
