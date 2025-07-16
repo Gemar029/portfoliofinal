@@ -320,13 +320,13 @@ nav.scrolled {
 /* Light mode pulse animations */
 @keyframes pulse-glow-light {
   0% {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.15));
   }
   50% {
-    filter: drop-shadow(0 0 18px rgba(0, 0, 0, 1));
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 1));
   }
   100% {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.15));
   }
 }
 
@@ -1060,7 +1060,7 @@ footer {
   }
 
   .hero p {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
   }
 
   /* Section Title */
@@ -1232,13 +1232,13 @@ body.dark {
 /* Keyframes for pulse animation - glow only */
 @keyframes pulse-glow {
   0% {
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
   }
   50% {
-    filter: drop-shadow(0 0 25px rgba(52, 152, 219, 0.6));
+    filter: drop-shadow(0 0 10px rgba(52, 152, 219, 1));
   }
   100% {
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.15));
   }
 }
 
